@@ -29,3 +29,11 @@ events.on('delivered', payload => {
     payload: payload
   });
 });
+
+// -------------- ORDER --------------
+// X EVENT: 'pickup'
+// X DRIVER: 'pick up zzzzzzzzz'
+// X EVENT: 'in-transit'
+// DRIVER: 'delievered up zzzzzzzzz'
+// VENDOR: Thank you
+// X EVENT: 'delievered'

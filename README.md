@@ -79,6 +79,12 @@ EVENT { event: 'delivered',
 
 ### Test
 
+run `node caps.js` to see the output of your console logs in your terminal 
+
 ### UML/WRRC
 
+![UML](./img/lab11UML.jpg)
+
 ### Contributors & Resources
+
+- Thank you Dan Engel for helping me organize my events
