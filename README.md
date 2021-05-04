@@ -83,7 +83,7 @@ run `node caps.js` to see the output of your console logs in your terminal
 
 ### UML/WRRC
 
-![UML](./img/lab11UML.jpg)
+![UML](./img/Lab11uml.jpg)
 
 ### Contributors & Resources
 
