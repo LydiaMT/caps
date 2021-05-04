@@ -20,6 +20,6 @@ setTimeout(() => {
 
 // ----- MONITOR THE SYSTEM FOR EVENTS -----
 // (1) Whenever the 'delivered' event occurs, log "Thank You" to the console
-events.on('delivered', payload => {
+events.emit('delivered', payload => {
   console.log('Thank You');
 });
