@@ -15,11 +15,12 @@ setTimeout(() => {
     address: faker.address.streetAddress()
   };
   // (2) Emit a ‘pickup’ event and attach the fake order as payload
-  events.emit('order', fakeOrder);
+  events.emit('CapOrder', fakeOrder);
 }, 5000 );
 
 // ----- MONITOR THE SYSTEM FOR EVENTS -----
 // (1) Whenever the 'delivered' event occurs, log "Thank You" to the console
-events.emit('in-transit', payload => {
-  console.log(`Thank you for delivering ${payload.orderID}`);
+events.on('VendorDelivered', payload => {
+  console.log(`VENDOR: Thank you for delivering ${payload.orderID}`);
+  events.emit('CapDelivered', payload);
 });

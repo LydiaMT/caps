@@ -1,39 +1,40 @@
 'use strict';
-// Manages the state of every package
-// Logs every event to the console with a timestamp and the event payload
+
 const events = require('./events.js');
 require('./customers/drivers/driver');
 require('./customers/vendors/vendor');
-// ----- READY FOR PICKUP -----
-events.on('order', payload => {
-  console.log('EVENT:', {
-    event: 'pickup',
-    time: new Date,
-    payload: payload
-  });
-  events.emit('pickup', payload);
-});
-// ----- IN TRANSIT -----
-events.on('in-transit', payload => {
-  console.log('EVENT:', {
-    event: 'in-transit',
-    time: new Date,
-    payload: payload
-  });
-});
-// ----- DELIVERED -----
-events.on('delivered', payload => {
-  console.log('EVENT:', {
-    event: 'delievered',
-    time: new Date,
-    payload: payload
-  });
-});
 
 // -------------- ORDER --------------
-// X EVENT: 'pickup'
-// X DRIVER: 'pick up zzzzzzzzz'
-// X EVENT: 'in-transit'
-// DRIVER: 'delievered up zzzzzzzzz'
-// VENDOR: Thank you
-// X EVENT: 'delievered'
+// 1. EVENT: 'pickup'
+// 2. DRIVER: 'pick up zzzzzzzzz'
+// 3. EVENT: 'in-transit'
+// 4. DRIVER: 'delievered up zzzzzzzzz'
+// 5. VENDOR: Thank you
+// 6. EVENT: 'delievered'
+
+// ----- READY FOR PICKUP -----
+events.on('CapOrder', payload => {
+  console.log('EVENT:', {
+    event: 'pickup',
+    time: new Date(),
+    payload: payload
+  });
+  events.emit('DriverPickup', payload);
+});
+// ----- IN TRANSIT -----
+events.on('CapInTransit', payload => {
+  console.log('EVENT:', {
+    event: 'in-transit',
+    time: new Date(),
+    payload: payload
+  });
+  events.emit('DriverInTransit', payload);
+});
+// ----- DELIVERED -----
+events.on('CapDelivered', payload => {
+  console.log('EVENT:', {
+    event: 'delievered',
+    time: new Date(),
+    payload: payload
+  });
+});
