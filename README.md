@@ -4,7 +4,7 @@
 
 ### Links and Resources
 
-✨ [Pull Request]()
+✨ [Pull Request](https://github.com/LydiaMT/caps/pull/1)
 
 ### Set Up
 
