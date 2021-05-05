@@ -1,7 +1,8 @@
 'use strict';
 
-// ========================= 1ST PARTY DEPENDENCIES =========================
-const Events = require('events');
-const events = new Events();
+const port = process.env.PORT || 3000;
+const io = require('socket.io')(port);
 
-module.exports = events;
+require('./caps.js')(io);
+require('./customers/drivers/driver')(io);
+require('./customers/vendors/vendor.js')(io);
