@@ -91,8 +91,11 @@ run `node caps.js` to see the output of your console logs in your terminal
 
 # Lab 12 | Day 2 |401 JavaScript
 
-### Technical Requirements
+### Links and Resources
 
+✨ [Pull Request](https://github.com/LydiaMT/caps/pull/6)
+
+### Technical Requirements
 
 In order to switch from TCP to Socket.io, the refactoring process will involve changes to each application to use the core features of Socket.io. Specifically, we’re going to use Socket.io **namespaces** to segment our events.
 
