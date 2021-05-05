@@ -1,4 +1,4 @@
-# Lab 11 - 401 JavaScript
+# Lab 11 - Day 1 - 401 JavaScript
 # CAPS - The Code Academy Parcel Service
 ## Author: Lydia Minehan-Tubic
 
@@ -88,3 +88,44 @@ run `node caps.js` to see the output of your console logs in your terminal
 ### Contributors & Resources
 
 - Thank you Dan Engel for helping me organize my events
+
+# Lab 12 | Day 2 |401 JavaScript
+
+### Technical Requirements
+
+
+In order to switch from TCP to Socket.io, the refactoring process will involve changes to each application to use the core features of Socket.io. Specifically, we’re going to use Socket.io **namespaces** to segment our events.
+
+- As a developer, I want to create network event driven system using Socket.io so that I can write code that responds to events originating from both servers and web applications
+- In order to switch from TCP to Socket.io, the refactoring process will involve changes to each application to use the core features of Socket.io
+- We’ll use one namespace called `caps` where all of our clients (vendors and drivers) will connect
+
+CAPS Application Server Modifications: 
+- Create and accept connections on a namespace called caps
+- Monitor the correct general events: pickup, in-transit, delivered
+- Broadcast the events and payload back out to the appropriate clients in the caps namespace
+  - Pickup can go out to all sockets (broadcast it) so that the drivers can hear it
+  - In-transit and delivered are meant to be heard only by the right vendor
+
+Vendor Application:
+- Connects to the CAPS server as a socket.io client to the caps namespace
+- Every .5 seconds, simulate a new customer order
+- Listen for the delivered event coming in from the CAPS server
+
+Driver Application:
+- Connects to the CAPS server as a socket.io client to the caps namespace
+- Listen for the pickup event coming in from the CAPS server
+- Simulate picking up the package
+- Simulate delivering the package
+
+### Testing
+
+- [Web Testing Application](https://javascript-401.netlify.app/)
+- You can also test functionality in your terminal. Open 3 panes and then run each socket from the root of the directory
+  1. `node caps.js`
+  2. `node customers/vendors/vendor.js`
+  3. `node customers/drivers/driver.js` 
+
+### UML/WRRC
+
+![UML](./img/lab12.jpg)

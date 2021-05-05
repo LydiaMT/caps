@@ -1,40 +1,42 @@
 'use strict';
 
-const events = require('./events.js');
-require('./customers/drivers/driver');
-require('./customers/vendors/vendor');
+require('dotenv').config();
+const port = process.env.PORT || 3000;
+const io = require('socket.io')(port);
+
+const caps = io.of('/caps');
 
 // -------------- ORDER --------------
-// 1. EVENT: 'pickup'
-// 2. DRIVER: 'pick up zzzzzzzzz'
-// 3. EVENT: 'in-transit'
-// 4. DRIVER: 'delievered up zzzzzzzzz'
-// 5. VENDOR: Thank you
-// 6. EVENT: 'delievered'
+io.on('connection', (socket) => {
+  console.log('CONNECTED', socket.id);
+});
 
-// ----- READY FOR PICKUP -----
-events.on('CapOrder', payload => {
-  console.log('EVENT:', {
-    event: 'pickup',
-    time: new Date(),
-    payload: payload
+caps.on('connection', (socket) => {
+  socket.on('CapOrder', payload => {
+    console.log('EVENT:', {
+      event: 'pickup',
+      time: new Date(),
+      payload: payload
+    });
+    caps.emit('DriverPickup', payload);
   });
-  events.emit('DriverPickup', payload);
-});
-// ----- IN TRANSIT -----
-events.on('CapInTransit', payload => {
-  console.log('EVENT:', {
-    event: 'in-transit',
-    time: new Date(),
-    payload: payload
+
+  socket.on('CapInTransit', payload => {
+    console.log('EVENT:', {
+      event: 'in-transit',
+      time: new Date(),
+      payload: payload
+    });
+    caps.emit('DriverInTransit', payload);
   });
-  events.emit('DriverInTransit', payload);
-});
-// ----- DELIVERED -----
-events.on('CapDelivered', payload => {
-  console.log('EVENT:', {
-    event: 'delievered',
-    time: new Date(),
-    payload: payload
+
+  socket.on('CapDelivered', payload => {
+    caps.emit('VendorDelivered', payload);
+    console.log('EVENT:', {
+      event: 'delievered',
+      time: new Date(),
+      payload: payload
+    });
   });
+
 });
