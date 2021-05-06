@@ -125,10 +125,11 @@ Driver Application:
 
 - [Web Testing Application](https://javascript-401.netlify.app/)
 - You can also test functionality in your terminal. Open 3 panes and then run each socket from the root of the directory
-  1. `node caps.js`
-  2. `node customers/vendors/vendor.js`
-  3. `node customers/drivers/driver.js` 
+  1. `node events.js`
+  2. `node caps.js`
+  3. `node customers/vendors/vendor.js`
+  4. `node customers/drivers/driver.js` 
 
 ### UML/WRRC
 
-![UML](./img/lab12.jpg)
+![UML](./img/lab12refactored.jpg)

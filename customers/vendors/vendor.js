@@ -3,18 +3,21 @@
 require('dotenv').config();
 const faker = require('faker');
 const io = require('socket.io-client');
-const vendor = io.connect(`${process.env.HOST}/caps`);
+const socket = io.connect(`${process.env.HOST}/caps`);
 
-setTimeout(() => {
+const store = process.env.SHOP;
+socket.emit('join', store);
+
+setInterval(() => {
   let fakeOrder = {
-    storeName: process.env.SHOP,
-    orderID: faker.datatype.uuid(),
+    store: store,
+    orderId: faker.datatype.uuid(),
     customerName: faker.name.findName(),
     address: faker.address.streetAddress()
   };
-  vendor.emit('CapOrder', fakeOrder);
-}, 500 );
+  socket.emit('pickup', fakeOrder);
+}, 5000 );
 
-vendor.on('VendorDelivered', payload => {
-  console.log(`VENDOR: Thank you for delivering ${payload.orderID}`);
+socket.on('delivered', payload => {
+  console.log(`VENDOR: Thank you for delivering ${payload.orderId}`);
 });

@@ -2,18 +2,17 @@
 
 require('dotenv').config();
 const io = require('socket.io-client');
-const driver = io.connect(`${process.env.HOST}/caps`);
+const socket = io.connect(`${process.env.HOST}/caps`);
 
-driver.on('DriverPickup', payload => {
+socket.on('pickup', payload => {
   setTimeout(()=> {
-    console.log(`DRIVER: picked up ${payload.orderID}`);
-    driver.emit('CapInTransit', payload);
-  }, 1500);
-});
+    console.log(`DRIVER: your package #${payload.orderId} is on the way`);
+    socket.emit('in-transit', payload);
+  }, 5000);
 
-driver.on('DriverInTransit', payload => {
   setTimeout(() => {
-    console.log(`DRIVER: delivered up ${payload.orderID}`);
-    driver.emit('CapDelivered', payload);
-  }, 3000 );
+    console.log(`DRIVER: delivered package #${payload.orderId}`);
+    socket.emit('delivered', payload);
+  }, 5000 );
+
 });
