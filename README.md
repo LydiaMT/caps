@@ -136,7 +136,7 @@ Driver Application:
 
 # Lab 13 - Day 3 - 401 JavaScript
 
-✨ [Pull Request](https://github.com/LydiaMT/caps/pull/7)
+✨ [Pull Request](https://github.com/LydiaMT/caps/pull/8)
 
 ### Technical Requirements
 
