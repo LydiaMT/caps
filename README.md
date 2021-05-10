@@ -182,8 +182,8 @@ queue {
 
 - You can test functionality in your terminal. Open 3 panes and then run each socket from the root of the directory
   1. `node hub.js`
-  2. `node customers/vendors/vendor.js`
-  3. `node customers/drivers/driver.js` 
+  2. `node clients/vendors/vendor.js`
+  3. `node clients/drivers/driver.js` 
 
 ### UML/WRRC
 
