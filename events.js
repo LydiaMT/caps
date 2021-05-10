@@ -6,9 +6,9 @@ const cors = require('cors');
 const faker = require('faker');
 const io = require('socket.io-client');
 const HOST = process.env.HOST || 'http://localhost:3000';
-const PORT2 = process.env.PORT2 || 3001;
+const PORT = process.env.PORT_CLIENT || 3004;
 const socket = io.connect(`${HOST}/caps`);
-// const io = require('socket.io')(PORT2);
+// const io = require('socket.io')(PORT);
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +25,6 @@ app.post('/pickup', (req, res) => {
   res.status(200).send('Your package was scheduled');
 });
 
-app.listen(PORT2, () =>{
-  console.log(`API server is up on ${PORT2}`);
+app.listen(PORT, () =>{
+  console.log(`API server is up on ${PORT}`);
 });

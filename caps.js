@@ -1,7 +1,7 @@
 'use strict';
 
 require('dotenv').config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT_CAPS || 3003;
 const io = require('socket.io')(PORT);
 
 const caps = io.of('/caps');
