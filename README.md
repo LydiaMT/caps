@@ -187,4 +187,4 @@ queue {
 
 ### UML/WRRC
 
-![UML](./img/lab13.jpg)
+![UML](./img/Lab13.jpg)
