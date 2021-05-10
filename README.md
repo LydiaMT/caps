@@ -133,3 +133,58 @@ Driver Application:
 ### UML/WRRC
 
 ![UML](./img/lab12refactored.jpg)
+
+# Lab 13 - Day 3 - 401 JavaScript
+
+✨ [Pull Request](https://github.com/LydiaMT/caps/pull/7)
+
+### Technical Requirements
+
+- A Queue Server Hub that:
+  - Keeps a log of the delivery, keyed by retailer and event type
+  - Broadcasts “Delivery Confirmations” to retailers
+- Client (Vendor) Applications that retailers would run, which subscribe to the Queue so that they can be alerted when a delivery was made
+  - When a client receives a message, it will need to let the hub server know that it was received
+  - The hub server should then delete the message
+  - Client can ask for all undelivered messages from the server
+  - Each of these would also need to be acknowledged upon receipt
+
+### Data Model 
+
+```js
+// Out for delivery
+queue {
+  '1-206-flowers': {
+    newOrder: { '498d7ad9-0f55-482e-8d72-c018d46b2651': { "order details" } },
+    received: {}
+  },
+  'acme-widgets': {
+    newOrder: { 'a597712b-3bea-4404-a1d7-49b5302451a5': { "order details" } },
+    received: {}
+  }
+}
+
+// received
+queue {
+  '1-206-flowers': {
+    newOrder: {},
+    received: { '498d7ad9-0f55-482e-8d72-c018d46b2651': { "order details" }  }
+  },
+  'acme-widgets': {
+    newOrder: {},
+    received: { 'a597712b-3bea-4404-a1d7-49b5302451a5': { "order details" } }
+  }
+}
+
+```
+
+### Testing
+
+- You can test functionality in your terminal. Open 3 panes and then run each socket from the root of the directory
+  1. `node hub.js`
+  2. `node customers/vendors/vendor.js`
+  3. `node customers/drivers/driver.js` 
+
+### UML/WRRC
+
+![UML](./img/lab13.jpg)
